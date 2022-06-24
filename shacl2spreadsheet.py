@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import Optional
+from unicodedata import decimal
 
 import xlsxwriter
 import yaml
@@ -43,7 +44,7 @@ def get_column_width(worksheet: Worksheet, column: int) -> Optional[int]:
         return None
     return max(lengths)
 
-def set_column_autowidth(worksheet: Worksheet, column: int):
+def set_column_autowidth(worksheet: Worksheet, column: int, coeff: float):
     """
     Set the width automatically on a column in the `Worksheet`.
     !!! Make sure you run this function AFTER having all cells filled in
@@ -52,7 +53,7 @@ def set_column_autowidth(worksheet: Worksheet, column: int):
     maxwidth = get_column_width(worksheet=worksheet, column=column)
     if maxwidth is None:
         return
-    worksheet.set_column(first_col=column, last_col=column, width=maxwidth)
+    worksheet.set_column(first_col=column, last_col=column, width=maxwidth*coeff)
 
 config = get_config("config.yaml")
 
@@ -84,15 +85,16 @@ for s, p, o in g.triples((None, RDF.type, ns1.NodeShape)):
         worksheet.write(index+1, 1, i[0])
         worksheet.write(index+1, 2, i[1])
 
-    worksheet.write(num_namespaces + 1, 0, config['output']['rdftype'], cell_format)
-    worksheet.write(num_namespaces + 1, 1, config['output']['rdfclass'])
+    # worksheet.write(num_namespaces + 1, 0, config['output']['rdftype'], cell_format)
+    # worksheet.write(num_namespaces + 1, 1, config['output']['rdfclass'])
 
     cell_format2 = workbook.add_format()
     cell_format2.set_bold()
     cell_format2.set_bg_color(config['output']['line']['bgcolor'])
 
-    worksheet.write(num_namespaces + 3, 0, config['output']['line']['URI'], cell_format2)
-    worksheet.write(num_namespaces + 3, 1, config['output']['line']['type'], cell_format2)
+    propertiesrow = num_namespaces + 2
+    worksheet.write(propertiesrow, 0, config['output']['line']['URI'], cell_format2)
+    worksheet.write(propertiesrow, 1, config['output']['line']['type'], cell_format2)
     mylist = []
     mylist2 = []
     for a, b, c in g.triples((s, ns1.property, None)):
@@ -114,9 +116,9 @@ for s, p, o in g.triples((None, RDF.type, ns1.NodeShape)):
             mylist3.append(element)
         else:
             mylist3.append(i)
-    worksheet.write_row(num_namespaces + 3, 2, mylist3, cell_format2)
-    autowidth_length = 3 + len(mylist)
-    for i in range(autowidth_length):
-        set_column_autowidth(worksheet, i)
+    worksheet.write_row(propertiesrow, 2, mylist3, cell_format2)
+    num_columns = 3 + len(mylist)
+    for i in range(num_columns):
+        set_column_autowidth(worksheet, i, 1.15)
 
 workbook.close()

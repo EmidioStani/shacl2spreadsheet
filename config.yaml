@@ -1,17 +1,25 @@
 namespaces:
   adms: http://www.w3.org/ns/adms#
+  cpsv: http://purl.org/vocab/cpsv#
   cv: http://data.europa.eu/m8g/
   dct: http://purl.org/dc/terms/
+  foaf: http://xmlns.com/foaf/0.1/
+  geosparql: http://www.opengis.net/ont/geosparql#
+  legal: http://www.w3.org/ns/legal#
   locn: http://www.w3.org/ns/locn#
+  org: http://www.w3.org/ns/org#
   person: http://www.w3.org/ns/person#
+  prov: http://www.w3.org/ns/prov#
   shacl: http://www.w3.org/ns/shacl#
+  skos: http://www.w3.org/2004/02/skos/core#
+  xhv: http://www.w3.org/1999/xhtml/vocab#
 input:
-  file: core-person-ap.ttl
+  file: cpsv-ap.ttl
   format: ttl
   shapestart: "#"
   shapeend: "Shape"
 output:
-  file: core-person.xlsx
+  file: cpsv-ap.xlsx
   classuri: "Class URI"
   prefix: "PREFIX"
   rdftype: "rdf:type"
