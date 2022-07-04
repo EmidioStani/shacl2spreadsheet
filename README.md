@@ -4,3 +4,6 @@ This python script transforms a SHACL file to an Excel file with a format specif
 
 The python script uses a config.yaml configuration file to work, you can see examples in the repository.
 
+You can run the python script simply with the commmand:
+
+python shacl2spreadsheet.py
