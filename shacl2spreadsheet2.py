@@ -102,24 +102,13 @@ for s, p, o in g.triples((None, RDF.type, ns1.NodeShape)):
             # print(f)
             property = URIRef(f)
             prop = property.n3(g.namespace_manager)
-            mylist.append(prop)
-        
-        for d, e, f in g.triples((c, None, None)):
-            if e == ns1.datatype:
-                mylist2.append(f)
-            if e == ns1['class']:
-                mylist2.append("uri")
-    print("mylist2")
-    print(mylist2)
+            mylist.append(prop) if prop not in mylist else mylist
+
     mylist3 = []
     print("mylist")
     print(mylist)
     for index, i in enumerate(mylist):
-        if (mylist2[index] == URIRef(config['output']['line']['datatypes']['langString']['namespace'])):
-            element = i + config['output']['line']['datatypes']['langString']['suffix']
-            mylist3.append(element)
-        else:
-            mylist3.append(i)
+        mylist3.append(i)
     worksheet.write_row(propertiesrow, 2, mylist3, cell_format2)
     num_columns = 3 + len(mylist)
     for i in range(num_columns):

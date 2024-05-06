@@ -14,12 +14,12 @@ namespaces:
   skos: http://www.w3.org/2004/02/skos/core#
   xhv: http://www.w3.org/1999/xhtml/vocab#
 input:
-  file: cpsv-ap.ttl
+  file: cpsv-ap-SHACL.ttl
   format: ttl
   shapestart: "#"
   shapeend: "Shape"
 output:
-  file: cpsv-ap.xlsx
+  file: cpsv-ap-SHACL.xlsx
   classuri: "Class URI"
   prefix: "PREFIX"
   rdftype: "rdf:type"
