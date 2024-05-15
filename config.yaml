@@ -19,11 +19,11 @@ input:
   shapestart: "#"
   shapeend: "Shape"
 output:
-  file: cpsv-ap-SHACL.xlsx
+  file: cpsv-ap-SHACL2.xlsx
   classuri: "Class URI"
   prefix: "PREFIX"
   rdftype: "rdf:type"
-  rdfclass: "rdfs:Class"
+  rdfclass: "owl:Class"
   line:
     bgcolor: "#EBF1DE"
     URI: "URI"

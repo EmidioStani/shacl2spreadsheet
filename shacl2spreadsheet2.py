@@ -85,14 +85,14 @@ for s, p, o in g.triples((None, RDF.type, ns1.NodeShape)):
         worksheet.write(index+1, 1, i[0])
         worksheet.write(index+1, 2, i[1])
 
-    # worksheet.write(num_namespaces + 1, 0, config['output']['rdftype'], cell_format)
-    # worksheet.write(num_namespaces + 1, 1, config['output']['rdfclass'])
+    worksheet.write(num_namespaces + 1, 0, config['output']['rdftype'], cell_format)
+    worksheet.write(num_namespaces + 1, 1, config['output']['rdfclass'])
 
     cell_format2 = workbook.add_format()
     cell_format2.set_bold()
     cell_format2.set_bg_color(config['output']['line']['bgcolor'])
 
-    propertiesrow = num_namespaces + 2
+    propertiesrow = num_namespaces + 3
     worksheet.write(propertiesrow, 0, config['output']['line']['URI'], cell_format2)
     worksheet.write(propertiesrow, 1, config['output']['line']['type'], cell_format2)
     mylist = []
